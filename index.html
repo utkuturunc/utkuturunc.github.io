@@ -1,8 +1,760 @@
-<html>
-<body>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Utku Turunç is a Product Engineer with 10+ years of experience building full-stack software products. Based in Berlin.">
+  <meta property="og:title" content="Utku Turunç - Product Engineer">
+  <meta property="og:description" content="Product Engineer with 10+ years building software from early ideas to reliable, scalable systems.">
+  <meta property="og:type" content="website">
+  <title>Utku Turunç · Product Engineer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=Geist:wght@300;400;500&family=Geist+Mono:wght@400&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-</body>
-<script type="text/javascript">
-    document.location = "http://utku.turunc.me/cv.pdf"
+    :root {
+      --canvas: #F5F1E8;
+      --surface: #FDFAF5;
+      --border: #E6DFD2;
+      --text-primary: #111111;
+      --text-secondary: #4E4C4A; /* darkened from #787774 — passes 4.5:1 on all surfaces */
+      --text-muted:    #686462; /* darkened from #ADADAB — passes 4.5:1 on all surfaces */
+      --accent-bg: #E1F3FE;
+      --accent-text: #1F6C9F; /* 4.97:1 on accent-bg */
+      --serif: 'Instrument Serif', Georgia, serif;
+      --sans:  'Geist', 'Helvetica Neue', -apple-system, BlinkMacSystemFont, sans-serif;
+      --mono:  'Geist Mono', 'SF Mono', 'JetBrains Mono', monospace;
+    }
+
+    html {
+      font-family: var(--sans);
+      background: var(--canvas);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    body { min-height: 100vh; }
+
+    .page {
+      max-width: 820px;
+      margin: 0 auto;
+      padding: 80px 48px 120px;
+    }
+
+    /* ─── FOCUS ─────────────────────────────────────────── */
+
+    :focus-visible {
+      outline: 2px solid var(--text-primary);
+      outline-offset: 3px;
+      border-radius: 2px;
+    }
+
+    /* ─── HERO ─────────────────────────────────────────── */
+
+    .hero {
+      display: grid;
+      grid-template-columns: 1fr 128px;
+      gap: 48px;
+      align-items: start;
+      padding-bottom: 56px;
+      border-bottom: 1px solid var(--border);
+      margin-bottom: 56px;
+    }
+
+    .hero-name {
+      font-family: var(--serif);
+      font-size: clamp(52px, 8vw, 76px);
+      font-weight: 400;
+      letter-spacing: -0.03em;
+      line-height: 1.0;
+      color: var(--text-primary);
+      margin-bottom: 10px;
+      text-wrap: balance;
+    }
+
+    .hero-title {
+      font-size: 15px;
+      font-weight: 400;
+      color: var(--text-secondary);
+      margin-bottom: 28px;
+    }
+
+    .contact-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px 20px;
+    }
+
+    .contact-links a,
+    .contact-links span {
+      font-size: 13px;
+      color: var(--text-secondary);
+      text-decoration: none;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 150ms ease;
+    }
+
+    .contact-links a:hover { color: var(--text-primary); }
+
+    .contact-links svg {
+      width: 13px;
+      height: 13px;
+      flex-shrink: 0;
+      stroke: currentColor;
+    }
+
+    .photo-wrap { margin-top: 6px; }
+
+    #photo {
+      width: 128px;
+      height: 128px;
+      border-radius: 8px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      display: block;
+    }
+
+    .photo-placeholder {
+      width: 128px;
+      height: 128px;
+      border-radius: 8px;
+      border: 1px dashed #CABFB0;
+      background: #EBE6DB;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 4px;
+    }
+
+    .photo-placeholder svg {
+      width: 20px;
+      height: 20px;
+      color: var(--text-muted);
+    }
+
+    .photo-placeholder span {
+      font-size: 11px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+
+    /* ─── SECTIONS ──────────────────────────────────────── */
+
+    /* Sections visible by default — animation is progressive enhancement */
+    .section { margin-bottom: 56px; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .section.will-animate {
+        opacity: 0;
+        transform: translateY(14px);
+        transition: opacity 600ms cubic-bezier(0.16, 1, 0.3, 1),
+                    transform 600ms cubic-bezier(0.16, 1, 0.3, 1);
+      }
+      .section.will-animate.in { opacity: 1; transform: none; }
+
+      .bento-card.will-animate {
+        opacity: 0;
+        transform: translateY(12px);
+        transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 80ms),
+                    transform 500ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 80ms),
+                    box-shadow 200ms ease;
+      }
+      .bento-card.will-animate.in { opacity: 1; transform: none; }
+
+      .t-item.will-animate {
+        opacity: 0;
+        transform: translateY(10px);
+        transition: opacity 500ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 55ms),
+                    transform 500ms cubic-bezier(0.16, 1, 0.3, 1) calc(var(--i, 0) * 55ms);
+      }
+      .t-item.will-animate.in { opacity: 1; transform: none; }
+    }
+
+    .section-label {
+      font-family: var(--mono);
+      font-size: 10.5px;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-muted);
+      margin-bottom: 20px;
+    }
+
+    /* ─── PROFILE ──────────────────────────────────────── */
+
+    .profile-body {
+      font-size: 15.5px;
+      line-height: 1.78;
+      color: #2F3437;
+      max-width: 600px;
+      text-wrap: pretty;
+    }
+
+    /* ─── HIGHLIGHTS (BENTO) ────────────────────────────── */
+
+    .bento {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .bento-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: 10px;
+      padding: 28px 32px;
+      transition: box-shadow 200ms ease;
+    }
+
+    .bento-card:hover { box-shadow: 0 2px 12px rgba(0,0,0,0.04); }
+    .bento-card.wide { /* single-col — wide class retained for semantic clarity */ }
+
+    .bento-headline {
+      font-size: 14.5px;
+      font-weight: 500;
+      color: var(--text-primary);
+      line-height: 1.55;
+      margin-bottom: 6px;
+      text-wrap: balance;
+    }
+
+    .bento-sub {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+    }
+
+    /* ─── TIMELINE ──────────────────────────────────────── */
+
+    .timeline { position: relative; }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 0;
+      top: 10px;
+      bottom: 0;
+      width: 1px;
+      background: var(--border);
+    }
+
+    .t-item {
+      padding-left: 26px;
+      padding-bottom: 36px;
+      position: relative;
+    }
+
+    .t-item:last-child { padding-bottom: 0; }
+
+    .t-dot {
+      position: absolute;
+      left: -4.5px;
+      top: 9px;
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: var(--canvas);
+      border: 1.5px solid #CECDC9;
+    }
+
+    .t-item:first-child .t-dot {
+      background: var(--text-primary);
+      border-color: var(--text-primary);
+    }
+
+    .t-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-bottom: 2px;
+    }
+
+    .t-role {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    .t-sep {
+      color: var(--text-muted);
+      margin: 0 3px;
+    }
+
+    .t-company {
+      font-size: 14px;
+      font-weight: 400;
+      font-style: italic;
+      color: var(--text-secondary);
+    }
+
+    .t-period {
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      white-space: nowrap;
+      flex-shrink: 0;
+    }
+
+    .t-loc {
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .t-bullets { list-style: none; padding: 0; }
+
+    .t-bullets li {
+      font-size: 13px;
+      color: var(--text-secondary);
+      line-height: 1.6;
+      padding-left: 14px;
+      position: relative;
+      margin-bottom: 3px;
+    }
+
+    .t-bullets li::before {
+      content: '·';
+      position: absolute;
+      left: 1px;
+      color: #BEBCB8;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    .t-inline-name {
+      font-weight: 500;
+      color: var(--text-primary);
+    }
+
+    /* ─── BOTTOM GRID ──────────────────────────────────── */
+
+    .bottom-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 32px;
+      align-items: start;
+    }
+
+    .edu-degree {
+      font-size: 14px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .edu-school {
+      font-style: italic;
+      font-size: 14px;
+      color: var(--text-secondary);
+      margin-bottom: 4px;
+    }
+
+    .edu-meta {
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+    }
+
+    .talk-title {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 2px;
+    }
+
+    .talk-org {
+      font-size: 13px;
+      color: var(--text-secondary);
+      margin-bottom: 3px;
+    }
+
+    .talk-date {
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: var(--text-muted);
+      display: block;
+    }
+
+    /* ─── SKILLS ───────────────────────────────────────── */
+
+    .skills { display: flex; flex-wrap: wrap; gap: 6px; }
+
+    .skill {
+      font-size: 11.5px;
+      font-family: var(--mono);
+      color: var(--accent-text);
+      background: var(--accent-bg);
+      padding: 4px 10px;
+      border-radius: 4px;
+    }
+
+    /* ─── RESPONSIVE ────────────────────────────────────── */
+
+    @media (max-width: 620px) {
+      .page { padding: 48px 24px 80px; }
+      .hero { grid-template-columns: 1fr; gap: 28px; }
+      .photo-wrap { order: -1; }
+      #photo, .photo-placeholder { width: 80px; height: 80px; }
+      .bento { grid-template-columns: 1fr; }
+      .bento-card.wide { grid-column: 1; }
+      .bottom-grid { grid-template-columns: 1fr; }
+      .t-head { flex-direction: column; gap: 1px; }
+    }
+
+    /* ─── PRINT ─────────────────────────────────────────── */
+
+    @media print {
+      *, *::before, *::after {
+        animation: none !important;
+        transition: none !important;
+      }
+
+      html {
+        font-size: 10.5pt;
+        background: white;
+        color: #111;
+      }
+
+      body { background: white; }
+
+      .page {
+        max-width: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .hero {
+        padding-bottom: 14pt;
+        margin-bottom: 14pt;
+        grid-template-columns: 1fr 80pt;
+      }
+
+      .hero-name { font-size: 28pt; }
+
+      .section {
+        opacity: 1 !important;
+        transform: none !important;
+        margin-bottom: 16pt;
+      }
+
+      .bento-card, .t-item {
+        opacity: 1 !important;
+        transform: none !important;
+      }
+
+      .bento-card { break-inside: avoid; }
+      .t-item { break-inside: avoid; padding-bottom: 12pt; }
+
+      a { color: inherit; text-decoration: none; }
+
+      .photo-placeholder { display: none; }
+      #photo { width: 60pt; height: 60pt; }
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+
+  <!-- HERO -->
+  <header class="hero">
+    <div>
+      <h1 class="hero-name">Utku<br>Turunç</h1>
+      <p class="hero-title">Senior Product Engineer &middot; Full Stack</p>
+      <nav class="contact-links" aria-label="Contact">
+        <a href="mailto:utku@turunc.me">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m2 7 10 7 10-7"/></svg>
+          utku@turunc.me
+        </a>
+        <a href="https://utku.turunc.me" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 0 20M12 2a15.3 15.3 0 0 0 0 20"/></svg>
+          utku.turunc.me
+        </a>
+        <a href="https://linkedin.com/in/utkuturunc" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="2" y="2" width="20" height="20" rx="4"/><path d="M7 10v7M7 7v.01M12 17v-4a2 2 0 0 1 4 0v4M12 10v7"/></svg>
+          utkuturunc
+        </a>
+        <a href="https://github.com/utkuturunc" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/></svg>
+          utkuturunc
+        </a>
+        <span>
+          <svg viewBox="0 0 24 24" fill="none" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7z"/><circle cx="12" cy="9" r="2.5"/></svg>
+          Berlin, Germany
+        </span>
+      </nav>
+    </div>
+    <div class="photo-wrap">
+      <img id="photo" src="photo.png" alt="Utku Turunç" style="object-position: center 18%;">
+    </div>
+  </header>
+
+  <!-- PROFILE -->
+  <section class="section" id="s-profile">
+    <p class="section-label">Profile</p>
+    <p class="profile-body">
+      Product Engineer with 10+ years of experience building software products from early ideas through to reliable, scalable systems. TypeScript and React are home turf. Strong product mindset, works closely with customers, ships what matters. Combines deep technical depth with collaborative instincts and a track record of mentoring engineers to deliver high-quality results.
+    </p>
+  </section>
+
+  <!-- HIGHLIGHTS -->
+  <section class="section" id="s-highlights">
+    <p class="section-label">Highlights</p>
+    <div class="bento">
+      <div class="bento-card wide" style="--i:0">
+        <p class="bento-headline">Led design and implementation of an AI/NLP automation system that doubled customers served while cutting support headcount by 50%</p>
+      </div>
+      <div class="bento-card" style="--i:1">
+        <p class="bento-headline">Designed Zalando's warehouse barcode printing system</p>
+        <p class="bento-sub">Six-figure annual cost savings</p>
+      </div>
+      <div class="bento-card" style="--i:2">
+        <p class="bento-headline">Built and scaled a fintech product to 9-figure processing volume</p>
+        <p class="bento-sub">20x revenue growth, multiple fund raises</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section class="section" id="s-exp">
+    <p class="section-label">Work Experience</p>
+    <div class="timeline">
+
+      <div class="t-item" style="--i:0">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Founding Product Engineer (Senior)</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Round Finance</span>
+          </div>
+          <time class="t-period" datetime="2024-04">04/2024 - Present</time>
+        </div>
+        <p class="t-loc">Berlin, London, Remote</p>
+        <ul class="t-bullets">
+          <li>Led design for a payments system processing 9-figures and growing</li>
+          <li>Built core B2B fintech architecture: wallets, payments, invoicing, automation pipelines</li>
+          <li>Shipped agentic systems to automate day-to-day finance operations</li>
+          <li>Onboarding, hiring, and mentoring across the engineering team</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:1">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Senior Founding Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Multiple Startups</span>
+          </div>
+          <time class="t-period" datetime="2023-02/2024-04">02/2023 - 04/2024</time>
+        </div>
+        <p class="t-loc">Remote</p>
+        <ul class="t-bullets">
+          <li>Developer and consultant for pre-seed stage startups</li>
+          <li><span class="t-inline-name">The Gut Feeling</span>: React Native + Next.js health-focused mobile app</li>
+          <li><span class="t-inline-name">0xOptimal</span>: big data pipelines integrating multi-chain blockchain data for targeted advertising</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:2">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Senior Software Engineer &amp; Consultant</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">TaxFix</span>
+          </div>
+          <time class="t-period" datetime="2023-02/2023-10">02/2023 - 10/2023</time>
+        </div>
+        <p class="t-loc">Berlin</p>
+        <ul class="t-bullets">
+          <li>Sole engineer on interim growth team; helped stand up the in-house growth function</li>
+          <li>Implemented growth tech stack and ran A/B tests to optimize business performance</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:3">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Founder</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Entrepreneur First</span>
+          </div>
+          <time class="t-period" datetime="2022-04/2023-02">04/2022 - 02/2023</time>
+        </div>
+        <p class="t-loc">Berlin</p>
+        <ul class="t-bullets">
+          <li>Participated in EF startup accelerator: customer discovery, market research, business development</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:4">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Lead Software Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">_blaenk</span>
+          </div>
+          <time class="t-period" datetime="2021-05/2022-04">05/2021 - 04/2022</time>
+        </div>
+        <p class="t-loc">Remote</p>
+        <ul class="t-bullets">
+          <li>Built customized e-commerce app with React Native</li>
+          <li>Designed real-time analytics platform leveraging in-store camera technology</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:5">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Software Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Zalando SE</span>
+          </div>
+          <time class="t-period" datetime="2019-02/2021-04">02/2019 - 04/2021</time>
+        </div>
+        <p class="t-loc">Berlin</p>
+        <ul class="t-bullets">
+          <li>Designed high-performance microservices warehouse barcode printing system (six-figure annual savings)</li>
+          <li>Contributed to warehouse management systems built for high reliability and scale</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:6">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Software Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">McMakler</span>
+          </div>
+          <time class="t-period" datetime="2018-08/2019-01">08/2018 - 01/2019</time>
+        </div>
+        <p class="t-loc">Berlin</p>
+        <ul class="t-bullets">
+          <li>Backend engineer on in-house CRM system design and development</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:7">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Software Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Valensas</span>
+          </div>
+          <time class="t-period" datetime="2016-07/2018-07">07/2016 - 07/2018</time>
+        </div>
+        <p class="t-loc">Istanbul</p>
+        <ul class="t-bullets">
+          <li>Managed product-engineering communications for AI/Chatbot projects</li>
+          <li>Built microservices for a banking application serving millions of users</li>
+        </ul>
+      </div>
+
+      <div class="t-item" style="--i:8">
+        <div class="t-dot" aria-hidden="true"></div>
+        <div class="t-head">
+          <div>
+            <span class="t-role">Senior Full Stack Engineer</span>
+            <span class="t-sep" aria-hidden="true">&middot;</span>
+            <span class="t-company">Freelance</span>
+          </div>
+          <span class="t-period">Ongoing</span>
+        </div>
+        <p class="t-loc">Remote</p>
+        <ul class="t-bullets">
+          <li>Managed Kubernetes clusters for multiple clients</li>
+          <li>Shipped: blog directory, truck route planner, motorcycle tour reservations, college book sharing, non-profit donation system, chat party game, real-time fitness app, meeting recorder &amp; transcriber</li>
+        </ul>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- EDUCATION + PRESENTATIONS + SKILLS -->
+  <section class="section" id="s-bottom">
+    <div class="bottom-grid">
+
+      <div>
+        <p class="section-label">Education</p>
+        <p class="edu-degree">Electrical &amp; Electronics Engineering, B.Sc.</p>
+        <p class="edu-school">Boğaziçi University</p>
+        <p class="edu-meta">2012 - 2016 &middot; Istanbul, Turkey</p>
+
+        <div style="margin-top: 36px;">
+          <p class="section-label">Presentations</p>
+          <p class="talk-title">Applications of Chatbots &amp; Artificial Intelligence</p>
+          <p class="talk-org">Turkey Artificial Intelligence Initiative</p>
+          <time class="talk-date" datetime="2017-10">10/2017</time>
+        </div>
+      </div>
+
+      <div>
+        <p class="section-label">Skills</p>
+        <div class="skills">
+          <span class="skill">TypeScript</span>
+          <span class="skill">Node.js</span>
+          <span class="skill">React</span>
+          <span class="skill">Next.js</span>
+          <span class="skill">NestJS</span>
+          <span class="skill">Python</span>
+          <span class="skill">Kotlin</span>
+          <span class="skill">Prisma</span>
+          <span class="skill">Drizzle</span>
+          <span class="skill">PostgreSQL</span>
+          <span class="skill">MongoDB</span>
+          <span class="skill">Redis</span>
+          <span class="skill">MySQL</span>
+          <span class="skill">Docker</span>
+          <span class="skill">Kubernetes</span>
+          <span class="skill">AWS</span>
+          <span class="skill">Google Cloud</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+</div>
+
+<script>
+  (function () {
+    var sections = document.querySelectorAll('.section');
+    var cards = document.querySelectorAll('.bento-card');
+    var items = document.querySelectorAll('.t-item');
+
+    [].forEach.call(sections, function (el) { el.classList.add('will-animate'); });
+    [].forEach.call(cards,   function (el) { el.classList.add('will-animate'); });
+    [].forEach.call(items,   function (el) { el.classList.add('will-animate'); });
+
+    var io = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (!entry.isIntersecting) return;
+        var el = entry.target;
+        el.classList.add('in');
+        el.querySelectorAll('.bento-card, .t-item').forEach(function (c) {
+          c.classList.add('in');
+        });
+        io.unobserve(el);
+      });
+    }, { threshold: 0.08, rootMargin: '0px 0px -32px 0px' });
+
+    [].forEach.call(sections, function (s) { io.observe(s); });
+  }());
 </script>
+</body>
 </html>
