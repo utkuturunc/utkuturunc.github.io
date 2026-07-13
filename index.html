@@ -206,6 +206,10 @@
       text-wrap: pretty;
     }
 
+    .profile-body p + p {
+      margin-top: 12px;
+    }
+
     /* ─── HIGHLIGHTS (BENTO) ────────────────────────────── */
 
     .bento {
@@ -521,9 +525,11 @@
   <!-- PROFILE -->
   <section class="section" id="s-profile">
     <p class="section-label">Profile</p>
-    <p class="profile-body">
-      Senior Product Engineer with 10 years of experience building software products from early ideas through to reliable, scalable systems. Enjoys working full stack with TypeScript and React. Brings a strong product mindset, works closely with customers, and focuses on building what matters for them. Combines deep technical expertise with experience mentoring engineers to deliver quality results. Seeking a role with close collaboration with customers and product teams, meaningful product impact, and opportunities to lead and mentor other developers.
-    </p>
+    <div class="profile-body">
+      <p>Senior Product Engineer with 10 years of experience building software products from early ideas through to reliable, scalable systems. Enjoys working full stack with TypeScript and React.</p>
+      <p>Brings a strong product mindset, works closely with customers, and focuses on building what matters for them. Combines deep technical expertise with a focus on delivering quality results.</p>
+      <p>Seeking a role with close collaboration with customers and product teams and meaningful product impact.</p>
+    </div>
   </section>
 
   <!-- HIGHLIGHTS -->
@@ -531,15 +537,20 @@
     <p class="section-label">Highlights</p>
     <div class="bento">
       <div class="bento-card wide" style="--i:0">
-        <p class="bento-headline">Led design and implementation of an AI/NLP automation system that doubled customers served while cutting support headcount by 50%</p>
+        <p class="bento-headline">Led design and implementation of an AI/NLP automation system</p>
+        <p class="bento-sub">Doubled customers served while freeing 50% of support capacity for other priorities</p>
       </div>
       <div class="bento-card" style="--i:1">
         <p class="bento-headline">Designed Zalando's warehouse barcode printing system</p>
         <p class="bento-sub">Six-figure annual cost savings</p>
       </div>
       <div class="bento-card" style="--i:2">
-        <p class="bento-headline">Built and scaled a fintech product to 9-figure processing volume</p>
+        <p class="bento-headline">Built a fintech product from its earliest stage to 9-figure processing volume as a founding engineer</p>
         <p class="bento-sub">20x revenue growth, multiple fund raises</p>
+      </div>
+      <div class="bento-card" style="--i:3">
+        <p class="bento-headline">Helped early-stage startups turn ambiguous ideas into well-scoped products</p>
+        <p class="bento-sub">Led customer discovery, defined product scopes, and ran projects from concept through delivery</p>
       </div>
     </div>
   </section>
